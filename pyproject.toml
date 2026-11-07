@@ -1,8 +1,11 @@
 [project]
-name = "comfyui_ultimatesdupscale"
-description = "ComfyUI nodes for the Ultimate Stable Diffusion Upscale script by Coyote-A."
-version = "1.7.2"
+name = "ultimate-sd-upscale-fork"
+description = "Ultimate SD Upscale nodes for ComfyUI, with the ComfyUI 0.44 upscale-model fix applied."
+version = "1.7.3"
 license = { file = "LICENSE" }
+classifiers = [
+    "Operating System :: OS Independent",
+]
 
 [project.optional-dependencies]
 test = [
@@ -11,15 +14,16 @@ test = [
 ]
 
 [project.urls]
-Repository = "https://github.com/ssitu/ComfyUI_UltimateSDUpscale"
+Repository = "https://github.com/lpnmqrpbmjx1064/comfyui-ultimatesdupscale-fork"
+Upstream = "https://github.com/ssitu/ComfyUI_UltimateSDUpscale"
+"Bug Tracker" = "https://github.com/lpnmqrpbmjx1064/comfyui-ultimatesdupscale-fork/issues"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = "ssit"
-DisplayName = "ComfyUI_UltimateSDUpscale"
+# PublisherId is the id on the registry profile page (the part after `@`). Left empty on
+# purpose: publishing must happen under the fork owner's account, never upstream's. Both
+# `comfy node publish` and .github/workflows/publish.yml refuse to run while it is unset.
+PublisherId = ""
+DisplayName = "Ultimate SD Upscale (Fork)"
 Icon = ""
 includes = ["/repositories/ultimate_sd_upscale/"]
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["ComfyUI_UltimateSDUpscale"]

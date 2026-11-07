@@ -1,0 +1,8 @@
+# Kept out of the Comfy Registry archive. The node, modules/, the vendored script in
+# repositories/ and the example workflows all ship; these are only useful when working on
+# the repository itself.
+.github/
+test/
+.gitignore
+.gitattributes
+.comfyignore
