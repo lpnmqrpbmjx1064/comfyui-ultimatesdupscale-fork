@@ -74,8 +74,8 @@ Not on the registry yet, so `comfy node install comfyui_ultimatesdupscale` still
 
 The fork's registry package name is `ultimate-sd-upscale-fork`. ComfyUI Manager reads that name out of `pyproject.toml` to decide what a
 package is, which is why the fork needed its own: while it still said `comfyui_ultimatesdupscale`, Manager matched the fork to upstream's
-registry entry. Publishing is wired up in `.github/workflows/publish.yml` and needs `[tool.comfy].PublisherId` set to the fork owner's
-publisher id, plus a `REGISTRY_ACCESS_TOKEN` secret. Until that is done, use one of the three options above.
+registry entry. Publishing to the registry is not set up yet: it needs `[tool.comfy].PublisherId` set to the fork owner's publisher id plus a
+`REGISTRY_ACCESS_TOKEN` secret. Until then, use one of the three options above.
 
 ## Usage
 
@@ -100,8 +100,9 @@ COMFY_DIR=/path/to/ComfyUI python test/comfy044_upscale_patch_test.py
 ```
 
 It checks that the crash still reproduces on an unpatched descriptor, that the patch fixes it, that an existing patcher is left alone, that
-single-tile and multi-tile upscales match direct inference pixel for pixel, and that all four nodes register. CI runs it on every push, and
-runs `comfy node validate` (the registry's own check) alongside it.
+single-tile and multi-tile upscales match direct inference pixel for pixel, and that all four nodes register. Nothing runs it
+automatically yet. `comfy node validate`, the registry's own check, passes on the current `pyproject.toml`; it is worth knowing that it only
+verifies `version` is non-empty and passes ruff `--exit-zero`, so it will not catch a security problem for you.
 
 Verified against ComfyUI 0.44.0 (commit `1332fabf`, 2026-11-07) on CPU with torch 2.15.0+cpu and spandrel 0.4.2. The crash itself came from
 a ComfyUI 0.44.2 install on an Intel Arc B580 (XPU), where the fork was then tested in the application.
